@@ -1,0 +1,110 @@
+<div class="container">
+    <h2>All Product</h2>
+    <p><button class="btn btn-outline-success" style="border-radius:50%;" data-toggle="modal" data-target="#addProduct"><i class="zmdi zmdi-plus-circle zmdi-hc-2x"></i></button></p>
+    <div class="card-columns">
+      <div class="card" *ngFor="let drink of gqlDrinks">
+        <img class="card-img-top" src="{{drink.img}}" width="334" height="251.55" [alt]="drink.name">
+        <div class="card-body">
+          <h5 class="card-title text-muted">
+             {{drink.name}} </h5>
+          <p class="card-text text-danger">Price : {{drink.price}} đ</p>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" style="width:90px;" data-toggle="modal" data-target="#myModal" (click)="getDrinkFromId(drink.id)"><i class="zmdi zmdi-edit"></i>  Edit</button>
+            <button class="btn btn-danger" style="width:90px;" (click)="deleteProduct(drink.id)"><i class="zmdi zmdi-delete"></i>  Delete</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- end all drinks -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{drinkById.name}}</h4>
+          <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form (submit)="saveProduct(drinkName.value,drinkImg.value,drinkDesc.value,drinkPrice.value)">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input #drinkName type="text" class="form-control" [value]="drinkById.name">
+          </div>
+          <div class="form-group">
+            <label for="img">Image:</label>
+            <input #drinkImg type="text" class="form-control" [value]="drinkById.img">
+          </div>
+          <div class="form-group">
+            <label for="desc">Description:</label>
+            <textarea #drinkDesc class="form-control" rows="4" [value]="drinkById.desc"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input #drinkPrice type="text" class="form-control" [value]="drinkById.price">
+          </div>
+          <div class="form-group">
+            <label for="cate">Category:</label>
+            <select class="form-control" id="cate" id="selectCategory" [(ngModel)]="selectCate" name="selectCate">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" id="save">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addProduct">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Product</h4>
+          <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form (submit)="addProduct(nameProduct.value,imgLink.value,descProduct.value,priceProduct.value)">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input #nameProduct type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="img">Image:</label>
+            <input #imgLink type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="desc">Description:</label>
+            <textarea #descProduct class="form-control" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="price">Price:</label>
+            <input #priceProduct type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="cate">Category:</label>
+            <select class="form-control" id="category" (change)="categoryChanged($event)" name="selectCateOfProduct">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" id="save">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

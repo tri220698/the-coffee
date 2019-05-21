@@ -1,0 +1,41 @@
+<header>
+  <nav>
+        <input type="checkbox" id="nav" class="hidden">
+        <label for="nav" class="nav-btn">
+              <i></i>
+              <i></i>
+              <i></i>
+        </label>
+        <div class="logo">
+              <a href="#"><i class="zmdi zmdi-coffee zmdi-hc-2x"></i></a>
+        </div>
+        <div class="search-by-category">
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                  Categories
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://localhost:4200/list-product/all">TẤT CẢ THỨC UỐNG</a>
+                  <a class="dropdown-item" *ngFor="let category of gqlCategories" href="http://localhost:4200/list-product/{{category.id}}">{{category.categoryName | uppercase}} </a>
+                </div>
+              </div>
+        </div>
+        <div class="search">
+            <form class="form-inline" (submit)="searchProduct(search.value)">
+              <input [formControl]="search" class="form-control mr-sm-2" type="text" placeholder="Search" required>
+              <button class="btn btn-outline-success" type="submit"><i class="zmdi zmdi-search"></i>  Search</button>
+            </form>
+        </div>
+        <div class="nav-wrapper">
+              <ul>
+                  <li *ngIf="checkLogin.role == 'admin'"><a routerLink="allproduct"><i class="zmdi zmdi-drink"></i>  list product</a></li>
+                    <li *ngIf="checkLogin.role == 'admin'"><a routerLink="listuser"><i class="zmdi zmdi-accounts-list"></i>  user management</a></li>
+                    <li *ngIf="checkLogin"><a routerLink="profile"><i class="zmdi zmdi-account"></i>  Profile</a></li>
+                    <li *ngIf="checkLogin"><a routerLink="logout">Log Out <i class="zmdi zmdi-arrow-right"></i></a></li>
+                    <li *ngIf="!checkLogin"><a routerLink="signup"><i class="zmdi zmdi-accounts-add"></i>  Sign Up</a></li>
+                    <li *ngIf="!checkLogin"><a routerLink="login"><i class="zmdi zmdi-sign-in"></i>  Sign In</a></li>
+              </ul>
+        </div>
+  </nav>
+</header>
+<!-- end hearder -->

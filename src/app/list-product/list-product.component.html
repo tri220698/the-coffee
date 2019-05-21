@@ -1,0 +1,27 @@
+<div id="loading">
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+  <div class="obj"></div>
+</div>
+<div class="container" style="visibility: hidden" id="product">
+    <h2>Search by : {{title}}</h2>
+    <div class="card-columns">
+      <div class="card" *ngFor="let drink of drinks">
+        <img class="card-img-top" src="{{drink.img}}" width="334" height="251.55" [alt]="drink.name">
+        <div class="card-body">
+          <h5 class="card-title text-muted">
+             {{drink.name}} </h5>
+          <p class="card-text text-danger">Price : {{drink.price}} đ</p>
+        </div>
+        <div class="card-footer">
+            <a routerLink="/product-content/{{drink.id}}" class="btn btn-outline-success">Buy now</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- end all drinks -->

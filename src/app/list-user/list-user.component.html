@@ -1,0 +1,96 @@
+<div class="container">
+  <h2>All Users</h2>
+  <div class="card-columns">
+    <div class="card" *ngFor="let user of users">
+      <img class="card-img-top" src="{{user.avatar}}"  width="354" height="354" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{user.firstName}} {{user.lastName}}</h5>
+        <p class="card-text">{{user.email}}</p>
+      </div>
+      <div class="card-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="getUserFromId(user.id)"><i class="zmdi zmdi-eye"></i>  See Profile</button>
+          <button type="button" (click)="deleteUser(user.id)" class="btn btn-danger"><i class="zmdi zmdi-delete"></i>  Delete</button>
+        </div>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{userById.firstName}} {{userById.lastName}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-3"><!--left col-->
+              <div class="text-center">
+                <img src="{{userById.avatar}}" class="img-fluid rounded-circle" alt="avatar">
+                <br><br>
+                <h4>{{userById.firstName}} {{userById.lastName}}</h4>
+              </div>
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+              <form (submit)="updateUser(firstName.value,pwd.value,lastName.value,phone.value,location.value,verify.value)">
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>First Name:</label>
+                        <input #firstName type="text" class="form-control" id="firstName" value="{{userById.firstName}}" placeholder="First name...">
+                      </div>
+                      <div class="form-group">
+                          <label for="gender">Gender</label>
+                          <select class="form-control" id="gender" [(value)]="gender" (change)="genderChanged($event)">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                          </select>
+                        </div>
+                      <div class="form-group">
+                          <label for="email">Email:</label>
+                          <input type="email" value="{{userById.email}}" class="form-control" id="email" placeholder="email@gmail.com" disabled>
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input #pwd type="password" value="{{userById.password}}" class="form-control" id="pwd" placeholder="Password...">
+                      </div>
+                      <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="lastName">Last name:</label>
+                        <input #lastName type="text" class="form-control" value="{{userById.lastName}}" id="lastName" placeholder="Last name...">
+                      </div>
+                      <div class="form-group">
+                          <label for="phone">Phone:</label>
+                          <input #phone type="text" class="form-control" value="{{userById.phone}}" id="phone" placeholder="Phone...">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <input #location type="text" class="form-control" value="{{userById.location}} "d="location" placeholder="Location...">
+                          </div>
+                      <div class="form-group">
+                        <label for="verify">Verify:</label>
+                        <input #verify type="password" value="{{userById.password}}" class="form-control" id="verify" placeholder="Password...">
+                      </div>
+                  </div>
+                </div>
+              </form>
+            </div><!--/col-9-->
+          </div><!--/row-->
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
