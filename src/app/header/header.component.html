@@ -28,8 +28,8 @@
         </div>
         <div class="nav-wrapper">
               <ul>
-                  <li *ngIf="roleLogin.role == 'admin'"><a routerLink="allproduct"><i class="zmdi zmdi-drink"></i>  list product</a></li>
-                    <li *ngIf="roleLogin.role == 'admin'"><a routerLink="listuser"><i class="zmdi zmdi-accounts-list"></i>  user management</a></li>
+                  <li *ngIf="roleLogin == 'admin'"><a routerLink="allproduct"><i class="zmdi zmdi-drink"></i>  list product</a></li>
+                    <li *ngIf="roleLogin == 'admin'"><a routerLink="listuser"><i class="zmdi zmdi-accounts-list"></i>  user management</a></li>
                     <li *ngIf="checkLogin"><a routerLink="profile"><i class="zmdi zmdi-account"></i>  Profile</a></li>
                     <li *ngIf="checkLogin"><a routerLink="logout">Log Out <i class="zmdi zmdi-arrow-right"></i></a></li>
                     <li *ngIf="!checkLogin"><a routerLink="signup"><i class="zmdi zmdi-accounts-add"></i>  Sign Up</a></li>

@@ -10,7 +10,7 @@ import { AccountService } from '../account.service';
 })
 export class HeaderComponent implements OnInit {
   checkLogin = false;
-  roleLogin = 'admin';
+  roleLogin : string = 'user';
   search = new FormControl('', [Validators.required]);
   categories : Category[];
   gqlCategories : any[] = [];
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
   checkedLogin() {
     this.checkLogin = this.accountService.isLoggedIn;
-    this.roleLogin = this.accountService.isLoggedIn;
+    this.roleLogin = this.accountService.isLoggedIn.role;
   }
   ngOnInit() {
     this.getCategoryFromService();
