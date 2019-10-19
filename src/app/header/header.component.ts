@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     if(s == "") {
       alert("Fill full!!!");
     }else{
-      window.location.href = "http://localhost:4200/list-product/"+s;
+      window.location.href = "/list-product/"+s;
     }
 
     window.event.preventDefault();

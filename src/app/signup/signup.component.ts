@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
       newUser.role = "user";
       this.accountService.gqlAddNewUser(newUser).subscribe(() => {
         alert("Register successfully");
-        window.location.href = "http://localhost:4200/login";
+        window.location.href = "/login";
       })
     }else {
       alert("Password and Confirm password are not the same")

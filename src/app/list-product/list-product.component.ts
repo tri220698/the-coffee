@@ -39,8 +39,13 @@ export class ListProductComponent implements OnInit {
          });
          if(checkToSearch == false) {
           this.drinksService.gqlSearchDrink(search).valueChanges.subscribe(({data})=>{
-            this.title = search;
-            this.drinks = data.searchDrinks;
+            if(data.searchDrinks.length == 0) {
+              this.title = search;
+              alert('Không tìm thấy thức uống trên');
+            }else {
+              this.title = search;
+              this.drinks = data.searchDrinks;
+            }
           })
         }else {
           this.categoryService.getGqlCategoryById(search).valueChanges.subscribe(({data})=>{

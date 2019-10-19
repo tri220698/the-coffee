@@ -20,6 +20,8 @@ import { DrinksService } from './drinks.service';
 import { FeedbackService } from './feedback.service';
 import { AllProductComponent } from './all-product/all-product.component';
 import { GraphQLModule } from './graphql.module';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { GraphQLModule } from './graphql.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    GraphQLModule
+    GraphQLModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [CategoriesService,DrinksService,FeedbackService],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { DrinksService } from '../drinks.service';
 import { Feedback } from 'src/models/feedback';
 import { FeedbackService } from '../feedback.service';
 import { AccountService } from '../account.service';
+import { Router } from '@angular/router';
 import { User } from 'src/models/user';
 
 @Component({
@@ -18,7 +19,7 @@ export class DashboardComponent implements OnInit {
   public gqlFeedbacks : any[] = [];
   constructor(private drinksService : DrinksService,
     private feedbacksService : FeedbackService,
-    private accountService : AccountService) { }
+    private accountService : AccountService,private router : Router) { }
 
   checkedLogin() {
     this.checkLogin = this.accountService.isLoggedIn;
@@ -56,7 +57,7 @@ export class DashboardComponent implements OnInit {
   comment(feedback: string) {
     if(this.checkLogin == null || this.accountService.isLoggedIn == false) {
       alert("You must login before commenting");
-      window.location.href = "http://localhost:4200/login";
+      this.router.navigate(['login']);
     }else {
       let t = new Date();
       console.log(t.getDate() + "-" + (t.getMonth() +1 ) + "-" + t.getFullYear());
